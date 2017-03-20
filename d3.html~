@@ -61,7 +61,7 @@
 	 		makeBars();
 	 
  
-      var transitionTest1999 = function(  ) {
+      var transitionTest1999 = function( scale ) {
         bar1999.selectAll("div") 
 			 .data(data1999) 
 			 .transition() 
@@ -70,7 +70,7 @@
 			   return d*10 + "px"; 
 			 }); 
       }; 
-      var transitionTest2009 = function(  ) {
+      var transitionTest2009 = function( scale ) {
         bar2009.selectAll("graph2009") 
 			 .data(data2009) 
 			 .transition() 
