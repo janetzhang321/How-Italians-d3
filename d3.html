@@ -7,12 +7,12 @@
 
     <style>
      .chart div {
-       font: 10px sans-serif;
+       font: 12px sans-serif;
        text-align: right;
        padding: 3px;
        margin: 1px;
        color: white;
-
+	   background-color:lightsteelblue;
      }
      
      #graph1999 div{
@@ -73,23 +73,55 @@
     		<td>GDP</td><td class="o">$14.4 Trillion</td><td class ="p">$11.9 Trillion</td>
     	</tr>
     </table>
-    <div class="chart" id="graph1999">
-    <h1 text-align: "center">1999</h1>
-        </div>
-		<br> <br><br><br><br><br><br>
-		<div class="chart" id="graph2009">
-		<h1 text-align:"center">2009</h1>
+	
+    <div class="chart" id="totalRev">
+		<h1 text-align: "center">Total Revenues</h1>
     </div>
 	
+	<br><br><br>
+		
+	<div class="chart" id="totalSpend">
+		<h1 text-align:"center">Total Spending</h1>
+	</div>
+	
+	<br><br><br>
+	
+	<div class="chart" id="totalSur">
+		<h1 text-align: "center">Total Surplus/Deficit</h1>
+	</div>
+	
+	<br><br><br>
+	
+	<div class="chart" id="totalSurPer">
+		<h1 text-align: "center">Total Surplus/Deficit as % of GDP</h1>
+    </div>
+	
+	<br><br><br>
+	
+	<div class="chart" id="gdp">
+		<h1 text-align: "center">GDP</h1>
+    </div>
+		<br> <br><br><br><br><br><br>
+  
+	
     <script>
-     var bar1999 = d3.select("#graph1999");
- 	 var bar2009 = d3.select("#graph2009");
-     var data1999= [2.29,2.13,157,1.3,11.9];
- 	 var data2009= [2.1,3.52,1141,9.8,14.4];
+     var barRev = d3.select("#totalRev");
+ 	 var barSpend = d3.select("#totalSpend");
+	 var barTotalSur=d3.select("#totalSur");
+     var barTotalSurPer=d3.select("#totalSurPer");
+	 var barGDP=d3.select("#gdp")
+	 var data1999= [2.29,2.13,1.57,1.3,11.9];
+ 	 var data2009= [2.1,3.52,11.41,9.8,14.4];
+	 var totalRev=[2.9,2.1];
+	 var totalSpend=[2.13,3.52];
+	 var totalSur=[1.57,11.41];
+	 var totalSurPer=[1.3,9.8];
+	 var gdp=[11.9,14.4];
+	 
      	var makeBars = function() {
 
-		   	bar1999.selectAll("#graph1999")
-				.data(data1999)
+		   	barRev.selectAll("#totalRev")
+				.data(totalRev)
 				.enter()
 				.append("div")
 				.style("width", function(d) {
@@ -99,7 +131,29 @@
 			  	return d;
 				});
 			
-				bar2009.selectAll("#graph2009")
+			barSpend.selectAll("div")
+				.data(totalSpend)
+				.enter()
+				.append("div")
+				.style("width", function(d) {
+			  	return d*10 + "px";
+				})
+				.text( function(d) {
+			  	return d;
+				});
+			
+			barTotalSur.selectAll("div")
+				.data(totalSur)
+				.enter()
+				.append("div")
+				.style("width", function(d) {
+			  	return d*10 + "px";
+				})
+				.text( function(d) {
+			  	return d;
+				});
+			
+			barTotalSurPer.selectAll("#totalSurPer")
 				.data(data2009)
 				.enter()
 				.append("div")
@@ -109,31 +163,45 @@
 				.text( function(d) {
 					return d;
 				});
+			
+			barGDP.selectAll("#gdp")
+				.data(gdp)
+				.enter()
+				.append("div")
+				.style("width", function(d) {
+					return d*10 + "px";
+				})
+				.text( function(d) {
+					return d;
+				});
 	 		};
-	 
+			
+			
 	 		makeBars();
 	 
  
-      var transitionTest1999 = function(  ) {
-        bar1999.selectAll("div") 
-			 .data(data1999) 
-			 .transition() 
-			 .duration(2000) 
-			 .style("width", function(d) { 
-			   return d*10 + "px"; 
-			 }); 
-      }; 
-      var transitionTest2009 = function(  ) {
-        bar2009.selectAll("graph2009") 
-			 .data(data2009) 
-			 .transition() 
-			 .duration(2000) 
-			 .style("width", function(d) { 
-			   return d*10 + "px"; 
-			 }); 
-      }; 
+      <!-- var transition1999 = function(  ) { -->
+        <!-- bar1999.selectAll("div")  -->
+			 <!-- .data(data1999)  -->
+			 <!-- .transition()  -->
+			 <!-- .duration(2000)  -->
+			 <!-- .style("width", function(d) {  -->
+			   <!-- return d*10 + "px";  -->
+			 <!-- });  -->
+      <!-- };  -->
+	  
+      <!-- var transition2009 = function(  ) { -->
+        <!-- bar2009.selectAll("graph2009")  -->
+			 <!-- .data(data2009)  -->
+			 <!-- .transition()  -->
+			 <!-- .duration(2000)  -->
+			 <!-- .style("width", function(d) {  -->
+			   <!-- return d*10 + "px";  -->
+			 <!-- });  -->
+      <!-- };  -->
 	 
-	 transitionTest2009();
+	 <!-- transition1999(); -->
+	 <!-- transition2009(); -->
      
     </script>
 
